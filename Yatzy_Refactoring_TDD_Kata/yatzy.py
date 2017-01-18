@@ -72,7 +72,7 @@ class Yatzy:
         score = 0
         numero = 1
         while parejas < 2 and numero <= 6:
-            if dice.count(numero) <= 2:
+            if dice.count(numero) >= 2:
                 parejas += 1
                 score += PAR * numero
             numero += 1
@@ -120,17 +120,17 @@ class Yatzy:
 
     @staticmethod
     def fullHouse(*dice):
-        score = 0
-        dosNumeros = 0
-        tresNumeros = 0
-        for numero in range(7):
-            if dice.count(numero) == 2:
-                score += numero * 2
-                dosNumeros = 1
-            elif dice.count(numero) == 3:
-                score += numero * 3
-                tresNumeros = 1
-            else:
-                dosNumeros == 1 and tresNumeros == 1
-            return score
-        return 0
+    	pareja = 0
+    	trio = 0
+    	score = 0
+
+    	for numero in range(1,7):
+    		if dice.count(numero) == 3:
+    			score += numero * 3
+    			trio = 1
+    		if dice.count(numero) == 2:
+    			score += numero * 2
+    			pareja = 1
+    	if pareja == 1 and trio == 1:
+    		return score
+    	return 0
